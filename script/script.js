@@ -17,11 +17,13 @@ ulElem.classList.add('gallery-points');
 
 ulElem.append(...imgList.map((_, index) => {
 	const elem = document.createElement('li');
+	for (let i = 1; i < imgList.length; i++) {
+		elem.innerHTML = index + 1;
+	}
 	elem.addEventListener('click', event => {
 		const liElem = event.target;
 		const liList = [...liElem.parentNode.children];
 		imgIndex = liList.indexOf(liElem);
-		elem.innerText = liList.indexOf(liElem) + 1;
 		render();
 	});
 	return elem;
@@ -32,6 +34,5 @@ const render = () => {
 	const liList = document.querySelectorAll('.gallery-points li');
 	liList.forEach(act => act.classList.remove('active'));
 	liList[imgIndex].classList.add('active');
-
 };
 render();
